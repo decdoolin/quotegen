@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import api from "./api";
 
 function App() {
   const[quote, setQuote] = useState(null);
@@ -8,7 +9,7 @@ function App() {
   }, []);
 
   async function fetchQuote() {
-    const response = await fetch("https://api.quoteable.io/random");
+    const response = await api.quoteable.getQuote({limit: 10});
     const data = await response.json();
     setQuote(data);
   }
